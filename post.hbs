@@ -25,7 +25,11 @@ into the {body} of the default.hbs template --}}
 <main class="main-wrap">
   {{#post}}
     {{!-- Inject styles of the hero image to make it responsive --}}
-    {{> hero background=feature_image}}
+    {{#match @custom.post_image_style "Displayed"}}
+      {{> hero background=feature_image}}
+    {{else match @custom.post_image_style "=" "Hidden"}}
+      {{> hero}}
+    {{/match}}
     </section>
     {{#if feature_image}}
       {{#if feature_image_caption}}
@@ -42,7 +46,7 @@ into the {body} of the default.hbs template --}}
     <div class="l-content in-post">
       {{!-- Everything inside the #post tags pulls data from the post --}}
       {{#post}}
-        <div class="l-wrapper in-post {{#unless feature_image}}no-image{{/unless}} js-animation-wrapper" data-animate="fade-up">
+        <div class="l-wrapper in-post {{#match @custom.post_image_style "Displayed"}}{{#unless feature_image}}no-image{{/unless}}{{else match @custom.post_image_style "=" "Hidden"}}no-image{{/match}} js-animation-wrapper" data-animate="fade-up">
           <div
             class="l-post-content js-progress-content">
             <header class="m-heading">

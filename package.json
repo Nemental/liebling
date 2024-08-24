@@ -58,7 +58,16 @@
         "type": "text",
         "default": "/newsletter",
         "group": "homepage"
-      }
+      },
+      "post_image_style": {
+        "type": "select",
+        "options": [
+            "Displayed",
+            "Hidden"
+        ],
+        "default": "Displayed",
+        "group": "post"
+    }
     }
   },
   "demo": "https://liebling.eduardogomez.io",
